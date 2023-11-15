@@ -8,4 +8,10 @@ if [ $? -ne 0 ]; then
     exit 1;
 fi;
 
-PROJECT=`php -r "echo dirname(dirname(realpath('$0')));"`
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".php\{0,1\}$")
+
+for FILE in $STAGED_FILES
+do
+    ./vendor/bin/sail pint "${FILE}"
+    git add "${FILE}"
+done;
