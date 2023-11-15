@@ -8,6 +8,13 @@ if [ $? -ne 0 ]; then
     exit 1;
 fi;
 
+#rodar laravel test
+./vendor/bin/sail test --parallel 
+if [ $? -ne 0 ]; then
+    echo "Opa, erro nos teste de arquivos, corriga o problema!"
+    exit 1;
+fi;
+
 #formata os arquivos usando o laravel pint 
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".php\{0,1\}$") || true
 
