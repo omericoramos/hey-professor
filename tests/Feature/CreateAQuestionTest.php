@@ -40,11 +40,19 @@ it('should have at least 10 characteres', function () {
     actingAs($user);
 
     // Act:: agir
+
+    // cria uma pergunta com menos de 10 caracteres para gerar o erro
     $request = post(route('question.store'), [
         'question' => str_repeat('*', 8).'?',
     ]);
 
     // Assert:: verificar
-    $request->assertSessionHasErrors(['question' => __('validation.min.string', ['min' => 10, 'attribute' => 'question'])]); // redireciona para a dashboard
-    assertDatabaseCount('questions', 0); // verifica se tem ao menos um registro da tabela do banco
+
+    // verifica se o erro passado é o erro de minimo e que é uma string para poder passar no teste
+    $request->assertSessionHasErrors(
+        ['question' => __('validation.min.string', ['min' => 10, 'attribute' => 'question'])]
+    );
+
+    // verifica se tem zero registro da tabela do banco para passar no teste
+    assertDatabaseCount('questions', 0);
 });
