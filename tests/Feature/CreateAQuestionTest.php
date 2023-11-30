@@ -30,6 +30,27 @@ it('should be able to create a new question bigger than 255 caracteres', functio
 
 // devo verificar se termina com ponto de interrogação ?
 it('should check if ends with question mark?', function () {
+    // Arrange:: preparar
+    $user = User::factory()->create();
+    actingAs($user);
+
+    // Act:: agir
+
+    // cria uma pergunta com 10 caracteres sem o ponto de interrogação para gerar o erro
+    $request = post(route('question.store'), [
+        'question' => str_repeat('*', 10),
+    ]);
+
+    // Assert:: verificar
+
+    // verifica se o erro passado é uma pergunta sem interrogação
+    // resposta: Tem certeza de que isso é uma pergunta? Falta um ponto de interrogação no final
+    $request->assertSessionHasErrors(
+        ['question' => 'Are you sure that is a questions? It is missing to question mark in the end.']
+    );
+
+    // verifica se tem zero registro da tabela do banco para passar no teste
+    assertDatabaseCount('questions', 0);
 });
 
 // deve ter pelo menos 10 caracteres
