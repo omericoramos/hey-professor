@@ -9,7 +9,7 @@ if [ $? -ne 0 ]; then
 fi;
 
 #rodar laravel test
-./vendor/bin/sail test --parallel 
+./vendor/bin/sail test --parallel | php
 if [ $? -ne 0 ]; then
     echo "Opa, erro nos teste de arquivos, corriga o problema!"
     exit 1;
