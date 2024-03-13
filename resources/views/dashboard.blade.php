@@ -8,11 +8,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div>
-                <form class="max-w-sm mx-auto" action="{{ route('question.store') }}" method="POST">
+                <form class="max-w-2xl mx-auto" action="{{ route('question.store') }}" method="POST">
                     @csrf
-                    <label for="pergunta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pergunta</label>
-                    <div class="mb-2">
-                        <textarea id="pergunta" rows="4" name="question"
+                    <label for="pergunta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qual a sua pergunta?</label>
+                    <div class="mb-2 w-full">
+                        <textarea id="pergunta" rows="6" name="question"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 
                         focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -23,7 +23,7 @@
                             class="text-white bg-blue-700 border border-gray-300 focus:outline-none hover:bg-blue-800  
                             focus:ring-4 focus:ring-gray-200 font-normal rounded-lg text-sm px-5 py-2 me-2 mb-2 
                             dark:bg-blue-700 dark:text-white dark:border-blue-400 dark:hover:bg-blue-800 
-                            dark:hover:border-blue-900 dark:focus:ring-gray-700">Salvar</button>
+                            dark:hover:border-blue-900 dark:focus:ring-gray-700">Salvar pergunta</button>
                     </div>
                     <div class="h-7">
                         @error('question')
