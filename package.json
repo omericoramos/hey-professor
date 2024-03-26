@@ -25,5 +25,8 @@
         "hooks": {
             "pre-commit": "yarn run lint-staged"
         }
+    },
+    "dependencies": {
+        "flowbite": "^2.2.0"
     }
 }
