@@ -21,5 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::unguard(); // todos os models vão ser desprotegidos
+        Model::preventLazyLoading(! app()->isProduction());
     }
 }
