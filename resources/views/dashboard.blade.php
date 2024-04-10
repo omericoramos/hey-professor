@@ -13,6 +13,11 @@
                     <x-btn.primery-button text="Salvar a pergunta" />
                 </x-form>
             </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-6">Lista de perguntas</h1>
+                <x-questionsList :questions="$questions"/>
+            </div>
         </div>
     </div>
 </x-app-layout>
