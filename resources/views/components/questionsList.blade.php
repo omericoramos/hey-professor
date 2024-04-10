@@ -7,6 +7,7 @@
                 <th class="text-left pr-8">Código</th>
                 <th class="text-left">Pergunta</th>
                 <th class="text-left">Criada em</th>
+                <th class="text-left">ações</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
                     <td class="p-2 py-4">{{ $item->id }}</td>
                     <td>{{ $item->question }}</td>
                     <td>{{ $item->created_at }}</td>
+                    <td><x-thumbs :question="$item" /></td>
                 </tr>
             @endforeach
         </tbody>
