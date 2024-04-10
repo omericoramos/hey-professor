@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Question\LikeController;
+use App\Http\Controllers\Question\UnlikeController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +40,6 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/question/store', [QuestionController::class, 'store'])->name('question.store');
 Route::post('/question/like/{question}', LikeController::class)->name('question.like');
+Route::post('/question/unlike/{question}', UnlikeController::class)->name('question.unlike');
 
 require __DIR__.'/auth.php';
