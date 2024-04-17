@@ -77,3 +77,22 @@ it('should have at least 10 characteres', function () {
     // verifica se tem zero registro da tabela do banco para passar no teste
     assertDatabaseCount('questions', 0);
 });
+
+// devo criar todas as perguntas como rascunho
+it('sholud create as draft all the time', function () {
+
+    // Arrange:: preparar
+    $user = User::factory()->create();
+
+    // Act     :: agir
+    $request = post(route('question.store'), [
+        'question' => str_repeat('*', 260).'?',
+    ]);
+
+    assertDatabaseHas('questions', [
+
+        'question' => str_repeat('*', 260).'?', // verifica se existe uma pergunta com 260 caracteres e o ponto de interrogação
+
+        'draft' => true, // verifica se a pergunta é um rascunho
+    ]);
+});

@@ -10,6 +10,11 @@ class Question extends Model
 {
     use HasFactory;
 
+    // casts = conversor de dados
+    protected $casts = [
+        'draft' => 'boolean', // neste caso se o draft for 0 então converte para false, caso seja 1 converte para true
+    ];
+
     /**
      * @return HasMany<Vote>
      */
