@@ -100,3 +100,13 @@ it('sholud create as draft all the time', function () {
         'draft' => true, // verifica se a pergunta é um rascunho
     ]);
 });
+
+// apenas usuários autenticados podem criar uma nova pergunta
+it('only authenticated users  can create a new question', function () {
+
+    // cria uma pergunta com menos de 10 caracteres para gerar o erro
+    post(route('question.store'), [
+        'question' => str_repeat('*', 8).'?',
+    ])->assertRedirect(route('login')); // redireciona para a tela de login);
+
+});
