@@ -21,7 +21,9 @@ it('should be able to create a new question bigger than 255 caracteres', functio
     ]);
 
     // Assert  :: verificar
-    $request->assertRedirect(route('dashboard')); // redireciona para a dashboard
+
+    $request->assertRedirect(); // faz o redirecionamento para a rota de perguntas
+
     assertDatabaseCount('questions', 1); // verifica se tem ao menos um registro da tabela do banco
 
     assertDatabaseHas('questions', [
