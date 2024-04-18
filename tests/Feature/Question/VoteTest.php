@@ -50,7 +50,7 @@ it('shuld not be able to like more than 1 time', function () {
     expect($user->votes()->where('question_id', '=', $question->id)->get())->toHaveCount(1);
 });
 
-// teste de unlike
+// // teste de unlike
 
 it('shuld be able to unlike a question', function () {
 

@@ -3,9 +3,9 @@
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Question\LikeController;
+use App\Http\Controllers\Question\PublishController;
 use App\Http\Controllers\Question\UnlikeController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\Qusetion\PublishController;
 use Illuminate\Support\Facades\Route;
 
 /*
