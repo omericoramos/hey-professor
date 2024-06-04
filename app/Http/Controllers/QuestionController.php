@@ -37,6 +37,11 @@ class QuestionController extends Controller
         return back();
     }
 
+    public function edit(Question $question): void
+    {
+
+    }
+
     public function destroy(Question $question): RedirectResponse
     {
         // checa se o usuário tem permissão para deletar a pergunta (o arquivo de autorização esta em app/Policies/QuestionPolicy.php)
