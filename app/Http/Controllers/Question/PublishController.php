@@ -10,7 +10,7 @@ class PublishController extends Controller
 {
     public function __invoke(Question $question): RedirectResponse
     {
-        // checa se o usuário tem permissão para publicar a pergunta
+        // checa se o usuário tem permissão para publicar a pergunta (o arquivo de autorização esta em app/Policies/QuestionPolicy.php)
         $this->authorize('publish', $question);
 
         $question->update([

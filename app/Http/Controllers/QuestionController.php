@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Rules\EndWithQuestionMarkRule;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -32,6 +33,15 @@ class QuestionController extends Controller
             'question' => request()->question,
             'draft' => true,
         ]);
+
+        return back();
+    }
+
+    public function destroy(Question $question): RedirectResponse
+    {
+        // checa se o usuário tem permissão para deletar a pergunta (o arquivo de autorização esta em app/Policies/QuestionPolicy.php)
+        $this->authorize('destroy', $question);
+        $question->delete();
 
         return back();
     }

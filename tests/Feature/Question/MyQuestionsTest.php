@@ -1,13 +1,12 @@
 <?php
 
-// deve ser capaz de listar todas as perguntas criadas por mim
-
 use App\Models\Question;
 use App\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
+// deve ser capaz de listar todas as perguntas criadas por mim
 it('should be able to list all questions created by me', function () {
 
     // criando os dois usuários

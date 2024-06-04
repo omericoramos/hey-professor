@@ -13,4 +13,11 @@ class QuestionPolicy
         // se sim, retorna true, se não,retorna false
         return $question->createdBy()->is($user);
     }
+
+    public function destroy(User $user, Question $question): bool
+    {
+        // verifica se a questão foi criada pelo usuário
+        // se sim, retorna true, se não,retorna false
+        return $question->createdBy()->is($user);
+    }
 }

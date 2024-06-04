@@ -7,16 +7,24 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
             <div>
                 <x-form post :action="route('question.store')">
                     <x-textarea name="question" label="Qual a sua pergunta?" />
                     <x-btn.primery-button text="Salvar a pergunta" />
                 </x-form>
             </div>
+
+             {{-- Listagens de rascunho --}}
+            <div class="max-w-5xl mx-auto">
+                <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-6">Lista de rascunos</h1>
+                <x-questions.questions-list :questions="$questions->where('draft', true)" :draft=true/>
+            </div>
             
-            <div class="max-w-4xl mx-auto">
-                <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-6">Lista de perguntas</h1>
-                <x-questionsList :questions="$questions"/>
+            {{-- Listagens de perguntas publicadas --}}
+            <div class="max-w-5xl mx-auto">
+                <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-10">Lista de perguntas</h1>
+                <x-questions.questions-list :questions="$questions->where('draft', false)" :draft=false/>
             </div>
         </div>
     </div>
