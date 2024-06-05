@@ -7,7 +7,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            Editar
+            <div>
+                <x-form post :action="route('question.update', $question)" put>
+                    <x-textarea name="question" label="Qual a sua pergunta?" value="{{$question->question}}" />
+                    <x-btn.primery-button>
+                        Atualizar a pergunta
+                    </x-btn.primery-button>
+                </x-form>
+            </div>
         </div>
     </div>
 </x-app-layout>

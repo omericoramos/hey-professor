@@ -21,13 +21,21 @@
                 @if ($draft == true)
                     <x-table.td>
                         <div class="flex justify-between">
-
-                            <x-form :action="route('question.publish',$item)" put>
-                                <x-btn.primery-button text='Publicar' />
+                            <a href="{{ route('question.edit', $item) }}">
+                                <x-btn.primery-button tooltip='Editar'>
+                                    <x-icons.edit />
+                                </x-btn.primery-button>
+                            </a>
+                            <x-form :action="route('question.publish', $item)" put>
+                                <x-btn.primery-button tooltip='Publicar'>
+                                    <x-icons.publish />
+                                </x-btn.primery-button>
                             </x-form>
 
-                            <x-form :action="route('question.destroy',$item)" delete>
-                                <x-btn.danger-button text='Deletar' />
+                            <x-form :action="route('question.destroy', $item)" delete>
+                                <x-btn.danger-button tooltip='Deletar'>
+                                    <x-icons.trash />
+                                </x-btn.danger-button>
                             </x-form>
 
                         </div>

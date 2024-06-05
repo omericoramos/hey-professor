@@ -11,21 +11,27 @@
             <div>
                 <x-form post :action="route('question.store')">
                     <x-textarea name="question" label="Qual a sua pergunta?" />
-                    <x-btn.primery-button text="Salvar a pergunta" />
-                </x-form>
+                    <x-btn.primery-button tooltip="Salvar pergunta">
+                        <div class="flex justify-between">
+                            <span class="mx-2">Salvar</span>
+                            <x-icons.save />
+                    </x-btn.primery-button>
             </div>
 
-             {{-- Listagens de rascunho --}}
-            <div class="max-w-5xl mx-auto">
-                <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-6">Lista de rascunos</h1>
-                <x-questions.questions-list :questions="$questions->where('draft', true)" :draft=true/>
-            </div>
-            
-            {{-- Listagens de perguntas publicadas --}}
-            <div class="max-w-5xl mx-auto">
-                <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-10">Lista de perguntas</h1>
-                <x-questions.questions-list :questions="$questions->where('draft', false)" :draft=false/>
-            </div>
+            </x-form>
         </div>
+
+        {{-- Listagens de rascunho --}}
+        <div class="max-w-5xl mx-auto">
+            <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-6">Lista de rascunos</h1>
+            <x-questions.questions-list :questions="$questions->where('draft', true)" :draft=true />
+        </div>
+
+        {{-- Listagens de perguntas publicadas --}}
+        <div class="max-w-5xl mx-auto">
+            <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-10">Lista de perguntas</h1>
+            <x-questions.questions-list :questions="$questions->where('draft', false)" :draft=false />
+        </div>
+    </div>
     </div>
 </x-app-layout>
