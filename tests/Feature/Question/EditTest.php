@@ -14,7 +14,7 @@ it('should be able to opne a question to edit', function () {
     $user = User::factory()->create();
 
     // depois eu crio a pergunta
-    $question = Question::factory()->for($user, 'createdBy')->create();
+    $question = Question::factory()->for($user, 'createdBy')->create(['draft' => true]);
 
     // e eu faço o login com o usuário
     actingAs($user);
@@ -31,7 +31,7 @@ it('should return a view', function () {
     $user = User::factory()->create();
 
     // depois eu crio a pergunta
-    $question = Question::factory()->for($user, 'createdBy')->create();
+    $question = Question::factory()->for($user, 'createdBy')->create(['draft' => true]);
 
     // e eu faço o login com o usuário
     actingAs($user);
