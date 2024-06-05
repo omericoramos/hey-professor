@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
+            <div class="max-w-7xl mx-auto">
                 <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-6">Lista de perguntas</h1>
                 <x-table.table>
                     <x-table.thead>
@@ -31,7 +31,9 @@
                         @endforeach
                     </x-table.tbody>
                 </x-table.table>
-
+                <div class="p-4 m-4">
+                    {{$questions->links()}}
+                </div>
             </div>
         </div>
     </div>
