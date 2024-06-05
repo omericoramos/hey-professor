@@ -31,9 +31,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', DashBoardController::class)->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', DashBoardController::class)->name('dashboard');
 
     //region profile routes
 
