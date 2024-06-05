@@ -17,7 +17,7 @@ it('should be able to update a question', function () {
 
     put(route('question.update', $question), [
         'question' => 'Update question?',
-    ])->assertRedirect();
+    ])->assertRedirect(route('question.index'));
 
     $question->refresh();
 
@@ -47,7 +47,7 @@ it('ensure that only questions with draft status can be updated', function () {
     put(route('question.update', $questionDraft), [
         'question' => 'Update question?',
 
-    ])->assertRedirect();
+    ])->assertRedirect(route('question.index'));
 });
 
 // certificar de que apenas a pessoa que criou a pergunta pode atualizá-la
@@ -69,7 +69,7 @@ it('should make sure only the person who created the question can update it', fu
     put(route('question.update', $question), [
         'question' => 'Update question?',
 
-    ])->assertRedirect();
+    ])->assertRedirect(route('question.index'));
 
     // faz um refresh nos dados da pergunta
     $question->refresh();
@@ -99,7 +99,7 @@ it('should be able to updated a question bigger than 255 caracteres', function (
 
     // Assert  :: verificar
 
-    $request->assertRedirect(); // faz o redirecionamento para a rota de perguntas
+    $request->assertRedirect(route('question.index')); // faz o redirecionamento para a rota de perguntas
 
     assertDatabaseCount('questions', 1); // verifica se tem ao menos um registro da tabela do banco
 
