@@ -37,6 +37,34 @@ class QuestionController extends Controller
         return back();
     }
 
+    public function edit(Question $question): View
+    {
+        $this->authorize('update', $question);
+
+        return view('question.edit', compact('question'));
+    }
+
+    public function update(Question $question): RedirectResponse
+    {
+        $this->authorize('update', $question);
+
+        request()->validate(
+            [
+                'question' => [
+                    'required',
+                    'min:10',
+                    new EndWithQuestionMarkRule(),
+                ],
+            ]
+        );
+
+        $question->update([
+            'question' => request()->question,
+        ]);
+
+        return to_route('question.index');
+    }
+
     public function destroy(Question $question): RedirectResponse
     {
         // checa se o usuário tem permissão para deletar a pergunta (o arquivo de autorização esta em app/Policies/QuestionPolicy.php)

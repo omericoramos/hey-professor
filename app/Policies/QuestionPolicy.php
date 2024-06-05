@@ -14,6 +14,12 @@ class QuestionPolicy
         return $question->createdBy()->is($user);
     }
 
+    public function update(User $user, Question $question): bool
+    {
+        // retorna o proprio draft da question pois ele já é um booleano
+        return $question->draft && $question->createdBy()->is($user);
+    }
+
     public function destroy(User $user, Question $question): bool
     {
         // verifica se a questão foi criada pelo usuário
