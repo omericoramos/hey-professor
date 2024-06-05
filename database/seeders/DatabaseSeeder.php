@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // adicionando 10 questões
-        Question::factory()->count(10)->create();
+        Question::factory()->count(80)->create();
     }
 }
