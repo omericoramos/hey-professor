@@ -10,6 +10,7 @@ use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\post;
 
 it('should be able to create a new question bigger than 255 caracteres', function () {
+
     // Arrange :: preparar
     $user = User::factory()->create();
     actingAs($user);
@@ -20,12 +21,15 @@ it('should be able to create a new question bigger than 255 caracteres', functio
     ]);
 
     // Assert  :: verificar
-    $request->assertRedirect(route('dashboard')); // redireciona para a dashboard
+
+    $request->assertRedirect(); // faz o redirecionamento para a rota de perguntas
+
     assertDatabaseCount('questions', 1); // verifica se tem ao menos um registro da tabela do banco
 
     assertDatabaseHas('questions', [
         'question' => str_repeat('*', 260).'?',
     ]); // verifica se existe uma pergunta com 260 caracteres e o ponto de interrogação
+
 });
 
 // devo verificar se termina com ponto de interrogação ?
@@ -76,4 +80,35 @@ it('should have at least 10 characteres', function () {
 
     // verifica se tem zero registro da tabela do banco para passar no teste
     assertDatabaseCount('questions', 0);
+});
+
+// devo criar todas as perguntas como rascunho
+it('sholud create as draft all the time', function () {
+
+    // Arrange:: preparar
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    // Act     :: agir
+    $request = post(route('question.store'), [
+        'question' => str_repeat('*', 260).'?',
+    ]);
+
+    assertDatabaseHas('questions', [
+
+        'question' => str_repeat('*', 260).'?', // verifica se existe uma pergunta com 260 caracteres e o ponto de interrogação
+
+        'draft' => true, // verifica se a pergunta é um rascunho
+    ]);
+});
+
+// apenas usuários autenticados podem criar uma nova pergunta
+it('only authenticated users  can create a new question', function () {
+
+    // cria uma pergunta com menos de 10 caracteres para gerar o erro
+    post(route('question.store'), [
+        'question' => str_repeat('*', 8).'?',
+    ])->assertRedirect(route('login')); // redireciona para a tela de login);
+
 });
