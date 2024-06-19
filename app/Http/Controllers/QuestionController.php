@@ -73,6 +73,15 @@ class QuestionController extends Controller
         return back();
     }
 
+    public function restore(int $id): RedirectResponse
+    {
+        $question = Question::withTrashed()->find($id);
+        $this->authorize('restore', $question);
+        $question->restore();
+
+        return back();
+    }
+
     public function destroy(Question $question): RedirectResponse
     {
         // checa se o usuário tem permissão para deletar a pergunta (o arquivo de autorização esta em app/Policies/QuestionPolicy.php)

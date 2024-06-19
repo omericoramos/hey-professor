@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/{question}', [QuestionController::class, 'update'])->name('question.update');
         Route::put('/publish/{question}', PublishController::class)->name('question.publish');
         Route::patch('/archive/{question}', [QuestionController::class, 'archive'])->name('question.archive');
+        Route::patch('/restore/{question}', [QuestionController::class, 'restore'])->name('question.restore');
         Route::post('/like/{question}', LikeController::class)->name('question.like');
         Route::post('/unlike/{question}', UnlikeController::class)->name('question.unlike');
     });
