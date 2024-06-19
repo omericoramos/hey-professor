@@ -44,14 +44,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //endregion
 
     //region question routes
-    Route::prefix('/question')->group(function () {
+    Route::prefix('/questions')->group(function () {
 
         Route::get('/index', [QuestionController::class, 'index'])->name('question.index');
-        Route::get('/edit/{question}/edit', [QuestionController::class, 'edit'])->name('question.edit');
-        Route::post('/store', [QuestionController::class, 'store'])->name('question.store');
-        Route::delete('/destroy/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
-        Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
+        Route::get('/{question}/edit', [QuestionController::class, 'edit'])->name('question.edit');
+        Route::post('', [QuestionController::class, 'store'])->name('question.store');
+        Route::delete('/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
+        Route::put('/{question}', [QuestionController::class, 'update'])->name('question.update');
         Route::put('/publish/{question}', PublishController::class)->name('question.publish');
+        Route::patch('/archive/{question}', [QuestionController::class, 'archive'])->name('question.archive');
         Route::post('/like/{question}', LikeController::class)->name('question.like');
         Route::post('/unlike/{question}', UnlikeController::class)->name('question.unlike');
     });

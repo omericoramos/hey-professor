@@ -65,11 +65,19 @@ class QuestionController extends Controller
         return to_route('question.index');
     }
 
+    public function archive(Question $question): RedirectResponse
+    {
+        $this->authorize('achive', $question);
+        $question->delete(); // softDelete
+
+        return back();
+    }
+
     public function destroy(Question $question): RedirectResponse
     {
         // checa se o usuário tem permissão para deletar a pergunta (o arquivo de autorização esta em app/Policies/QuestionPolicy.php)
         $this->authorize('destroy', $question);
-        $question->delete();
+        $question->forceDelete();
 
         return back();
     }
