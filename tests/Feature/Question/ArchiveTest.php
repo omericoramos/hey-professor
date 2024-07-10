@@ -7,7 +7,6 @@ use App\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertSoftDeleted;
-use function Pest\Laravel\delete;
 use function Pest\Laravel\patch;
 
 it('should be able to archive a question', function () {

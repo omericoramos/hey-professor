@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //endregion
 
-    //region question routes
+    //question routes
     Route::prefix('/questions')->group(function () {
 
         Route::get('/index', [QuestionController::class, 'index'])->name('question.index');
