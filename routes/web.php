@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     // se o .env for local faz o login automaticamente utilizando o usuário de id 1
-    if (app()->isLocal()) {
-        auth()->loginUsingId(1);
+    // if (app()->isLocal()) {
+    //     auth()->loginUsingId(1);
 
-        return to_route('dashboard');
-    }
+    //     return to_route('dashboard');
+    // }
 
     return view('welcome');
 });

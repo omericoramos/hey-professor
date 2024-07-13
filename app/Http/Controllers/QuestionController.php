@@ -13,6 +13,7 @@ class QuestionController extends Controller
     {
         return view('question.index', [
             'questions' => user()->questions()->get(),
+            'archiveQuestions' => user()->questions()->onlyTrashed()->get(),
         ]);
     }
 

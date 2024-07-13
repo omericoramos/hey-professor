@@ -1,4 +1,4 @@
-@props(['tooltip' => null])
+@props(['tooltip' => null,'tooltipTitle' => null])
 
 <div>
     <button type="submit" data-tooltip-target="tooltip-{{ $tooltip }}"
@@ -10,7 +10,7 @@
     <div @if ($tooltip) id="tooltip-{{ $tooltip }}" @endif role="tooltip"
         class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white 
         transition-opacity duration-300 bg-blue-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-blue-700">
-        {{ $tooltip }}
+        {{ $tooltipTitle }}
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
 </div>

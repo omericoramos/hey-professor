@@ -32,6 +32,11 @@
             <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-10">Lista de perguntas</h1>
             <x-questions.questions-list :questions="$questions->where('draft', false)" :draft=false />
         </div>
+        {{-- Listagens de perguntas arquivadas --}}
+        <div class="max-w-5xl mx-auto">
+            <h1 class="dark:text-slate-500 uppercase text-xl font-semibold my-10">Lista de perguntas arquivadas</h1>
+            <x-questions.archive-questions :archiveQuestions="$archiveQuestions"/>
+        </div>
     </div>
     </div>
 </x-app-layout>
