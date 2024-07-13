@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     // se o .env for local faz o login automaticamente utilizando o usuário de id 1
-    if (app()->isLocal()) {
-        auth()->loginUsingId(1);
+    // if (app()->isLocal()) {
+    //     auth()->loginUsingId(1);
 
-        return to_route('dashboard');
-    }
+    //     return to_route('dashboard');
+    // }
 
     return view('welcome');
 });
@@ -43,15 +43,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //endregion
 
-    //region question routes
-    Route::prefix('/question')->group(function () {
+    //question routes
+    Route::prefix('/questions')->group(function () {
 
         Route::get('/index', [QuestionController::class, 'index'])->name('question.index');
-        Route::get('/edit/{question}/edit', [QuestionController::class, 'edit'])->name('question.edit');
-        Route::post('/store', [QuestionController::class, 'store'])->name('question.store');
-        Route::delete('/destroy/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
-        Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
+        Route::get('/{question}/edit', [QuestionController::class, 'edit'])->name('question.edit');
+        Route::post('', [QuestionController::class, 'store'])->name('question.store');
+        Route::delete('/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
+        Route::put('/{question}', [QuestionController::class, 'update'])->name('question.update');
         Route::put('/publish/{question}', PublishController::class)->name('question.publish');
+        Route::patch('/archive/{question}', [QuestionController::class, 'archive'])->name('question.archive');
+        Route::patch('/restore/{question}', [QuestionController::class, 'restore'])->name('question.restore');
         Route::post('/like/{question}', LikeController::class)->name('question.like');
         Route::post('/unlike/{question}', UnlikeController::class)->name('question.unlike');
     });
