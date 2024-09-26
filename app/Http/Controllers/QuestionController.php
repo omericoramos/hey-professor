@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Rules\EndWithQuestionMarkRule;
+use App\Rules\SomeQuestionRule;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -25,6 +26,7 @@ class QuestionController extends Controller
                     'required',
                     'min:10',
                     new EndWithQuestionMarkRule(),
+                    new SomeQuestionRule(),
                 ],
             ]
         );
