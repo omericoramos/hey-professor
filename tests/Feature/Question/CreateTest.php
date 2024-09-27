@@ -2,6 +2,7 @@
 
 // deve ser capaz de criar uma nova pergunta com mais de 255 caracteres
 
+use App\Models\Question;
 use App\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -111,4 +112,17 @@ it('only authenticated users  can create a new question', function () {
         'question' => str_repeat('*', 8).'?',
     ])->assertRedirect(route('login')); // redireciona para a tela de login);
 
+});
+
+it('question should be unique', function () {
+    // Arrange:: preparar
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Question::factory()->create(['question' => 'Alguma pergunta?']);
+
+    post(route('question.store'), [
+        'question' => 'Alguma pergunta?',
+    ])->assertSessionHasErrors(['question' => 'A pergunta já existe']);
 });
