@@ -32,7 +32,7 @@
                     </x-table.tbody>
                 </x-table.table>
                 <div class="p-4 m-4">
-                    {{$questions->links()}}
+                    {{$questions->withQueryString()->links()}}
                 </div>
             </div>
         </div>
