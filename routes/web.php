@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\GitHub\CallbackController;
+use App\Http\Controllers\Auth\GitHub\RedirectController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Question\LikeController;
@@ -60,5 +62,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //endregion
 });
-
+Route::get('github/login', RedirectController::class)->name('github.login');
+Route::get('github/callback', CallbackController::class)->name('github.callback');
 require __DIR__.'/auth.php';
